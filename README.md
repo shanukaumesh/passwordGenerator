@@ -1,9 +1,12 @@
+# Password Generator
 
 ## Getting Started
 
+This project is a secure password generator built using React for the frontend and Flask for the backend.
+
 ### Prerequisites
 
-- Node.js
+- Node.js (v14.x or later)
 - Python 3.x
 
 ### Backend Setup
@@ -40,7 +43,7 @@
 
 ### Frontend Setup
 
-1. Navigate to the [frontend](http://_vscodecontentref_/#%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22c%3A%5C%5CUsers%5C%5Cshanu%5C%5CDocuments%5C%5CWeb_dev%5C%5CpasswordGenerator%5C%5Cfrontend%22%2C%22_sep%22%3A1%2C%22path%22%3A%22%2Fc%3A%2FUsers%2Fshanu%2FDocuments%2FWeb_dev%2FpasswordGenerator%2Ffrontend%22%2C%22scheme%22%3A%22file%22%7D%7D) directory:
+1. Navigate to the `frontend` directory:
     ```sh
     cd frontend
     ```
@@ -58,9 +61,15 @@
 ## Usage
 
 1. Open your web browser and navigate to `http://localhost:3000`.
-2. Use the interface to generate a secure password.
-3. Copy the generated password to your clipboard.
+2. Use the interface to generate a secure password by specifying your preferences.
+3. Click on the generated password box to automatically copy the password to your clipboard.
+
+## Features
+
+- Adjustable password length.
+- Options to include uppercase letters, numbers, and symbols.
+- Automatically copy generated password to clipboard on click.
 
 ## Contributing
 
-Contributions are welcome! Please open an issue or submit a pull request.
+Contributions are welcome! Please feel free to open an issue or submit a pull request for improvements or new features.
