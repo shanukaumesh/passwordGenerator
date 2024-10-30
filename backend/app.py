@@ -1,37 +1,33 @@
-# backend/app.py
-
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 import random
 import string
-from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app)  # Enable CORS to allow requests from the frontend
+CORS(app)  # Enable CORS
 
-@app.route("/generate-password", methods=["POST"])
+@app.route('/generate', methods=['POST'])
 def generate_password():
-    data = request.get_json()
-    length = data.get("length", 12)
-    use_uppercase = data.get("useUppercase", True)
-    use_lowercase = data.get("useLowercase", True)
-    use_numbers = data.get("useNumbers", True)
-    use_symbols = data.get("useSymbols", True)
+    data = request.json
+    length = data.get('length', 12)
+    include_uppercase = data.get('includeUppercase', False)
+    include_numbers = data.get('includeNumbers', False)
+    include_symbols = data.get('includeSymbols', False)
 
-    char_set = ""
-    if use_uppercase:
-        char_set += string.ascii_uppercase
-    if use_lowercase:
-        char_set += string.ascii_lowercase
-    if use_numbers:
-        char_set += string.digits
-    if use_symbols:
-        char_set += "!@#$%^&*()_+-=[]{}|;:,.<>?"
+    # Character pool for password generation
+    characters = string.ascii_lowercase
+    if include_uppercase:
+        characters += string.ascii_uppercase
+    if include_numbers:
+        characters += string.digits
+    if include_symbols:
+        characters += string.punctuation
 
-    if not char_set:
-        return jsonify({"password": ""})
+    if length < 1:
+        return jsonify({"error": "Password length must be at least 1"}), 400
 
-    password = "".join(random.choice(char_set) for _ in range(length))
+    password = ''.join(random.choice(characters) for _ in range(length))
     return jsonify({"password": password})
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     app.run(debug=True)
