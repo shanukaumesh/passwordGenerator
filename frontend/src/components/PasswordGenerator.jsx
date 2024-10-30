@@ -32,6 +32,16 @@ const PasswordGenerator = () => {
         }
     };
 
+    const handleCopyPassword = () => {
+        if (password) {
+            navigator.clipboard.writeText(password).then(() => {
+                alert('Password copied to clipboard!');
+            }).catch(err => {
+                console.error('Failed to copy password: ', err);
+            });
+        }
+    };
+
     return (
         <div className="container">
             <h1>Password Generator</h1>
@@ -72,9 +82,10 @@ const PasswordGenerator = () => {
             </div>
             <button onClick={generatePassword}>Generate Password</button>
             <h2>Generated Password:</h2>
-            <div className="password-box">
+            <div className="password-box" onClick={handleCopyPassword}>
                 {password || 'Your generated password will appear here.'}
             </div>
+
         </div>
     );
 };
