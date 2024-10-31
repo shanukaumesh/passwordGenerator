@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import Slider from '@mui/material/Slider';
 import '../styles/PasswordGenerator.css';
 
 const PasswordGenerator = () => {
@@ -42,16 +43,34 @@ const PasswordGenerator = () => {
         }
     };
 
+    const handleSliderChange = (event, newValue) => {
+        setLength(newValue);
+    };
+
     return (
         <div className="container">
             <h1>Password Generator</h1>
             <div className="input-group">
                 <label>Password Length:</label>
+                <Slider
+                    value={length}
+                    onChange={handleSliderChange}
+                    min={1}
+                    max={32}
+                    step={1}
+                    valueLabelDisplay="auto"
+                    sx={{
+                        width: 200,
+                        color: 'red', // Customize the color as needed
+                    }}
+                />
                 <input
                     type="number"
                     value={length}
                     onChange={(e) => setLength(Number(e.target.value))}
                     min="1"
+                    max="32"
+                    className="password-length-input"
                 />
             </div>
             <div className="checkbox-group">
@@ -85,7 +104,6 @@ const PasswordGenerator = () => {
             <div className="password-box" onClick={handleCopyPassword}>
                 {password || 'Your generated password will appear here.'}
             </div>
-
         </div>
     );
 };
